@@ -25,5 +25,7 @@ export async function signInUser(email, password) {
 }
 
 export async function signOutUser() {
+    const response = client.auth.signOut();
+    return response;
     // > Part B: supabase signout
 }

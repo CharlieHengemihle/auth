@@ -70,6 +70,15 @@ authForm.addEventListener('submit', async (e) => {
     authButton.textContent = 'Authenticating...';
 
     // > Part A:
+    const formData = new FormData(authForm);
+
+    let response = null;
+
+    if (authType === singInType) {
+        response = await signInUser(formData.get('email'), formData.get('password'));
+    } else {
+        response = await signUpUser(formData.get('email'), formData.get('password'));
+    }
     //      - get formData object from form
     //      - call "authType.action" passing in the email and password from
     //        the form data and assign to response variable
@@ -82,6 +91,7 @@ authForm.addEventListener('submit', async (e) => {
         authButton.disabled = false;
         authButton.textContent = buttonText;
     } else {
+        location.replace(redirectUrl);
         // go back to wherever user came from
         // > Part A using "location", replace url with "redirectUrl"
     }
