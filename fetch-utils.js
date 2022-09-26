@@ -11,14 +11,14 @@ export function getUser() {
 }
 
 export async function signUpUser(email, password) {
-    const response = client.auth.signUp({email, password});
+    const response = client.auth.signUp({ email, password });
 
     return response;
     // > Part A: supabase signup
 }
 
 export async function signInUser(email, password) {
-    const response = client.auth.signIn({ email, password});
+    const response = client.auth.signIn({ email, password });
 
     return response;
     // > Part A: supabase signin

@@ -13,6 +13,10 @@ const redirectUrl = params.get('redirectUrl') || '../';
 
 // > Part C: If user directly navigated to /auth, but we have a user, go back
 const user = getUser();
+
+if (user) {
+    location.replace(`/auth/?redirectUrl=${encodeURIComponent(location)}`);
+}
 // (they need to sign out first before coming here)
 //      - get the user
 //      - replace location with redirectUrl
