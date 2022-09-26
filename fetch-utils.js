@@ -11,7 +11,7 @@ export function getUser() {
 }
 
 export async function signUpUser(email, password) {
-    cosnt response = client.auth.signUp({email, password});
+    const response = client.auth.signUp({email, password});
 
     return response;
     // > Part A: supabase signup

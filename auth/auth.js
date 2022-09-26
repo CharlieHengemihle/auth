@@ -12,6 +12,7 @@ const params = new URLSearchParams(location.search);
 const redirectUrl = params.get('redirectUrl') || '../';
 
 // > Part C: If user directly navigated to /auth, but we have a user, go back
+const user = getUser();
 // (they need to sign out first before coming here)
 //      - get the user
 //      - replace location with redirectUrl
@@ -74,7 +75,7 @@ authForm.addEventListener('submit', async (e) => {
 
     let response = null;
 
-    if (authType === singInType) {
+    if (authType === signInType) {
         response = await signInUser(formData.get('email'), formData.get('password'));
     } else {
         response = await signUpUser(formData.get('email'), formData.get('password'));
