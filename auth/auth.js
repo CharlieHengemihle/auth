@@ -12,6 +12,11 @@ const params = new URLSearchParams(location.search);
 const redirectUrl = params.get('redirectUrl') || '../';
 
 // > Part C: If user directly navigated to /auth, but we have a user, go back
+const user = getUser();
+
+if (user) {
+    location.replace(`/user/?redirectUrl=${encodeURIComponent(location)}`);
+}
 // (they need to sign out first before coming here)
 //      - get the user
 //      - replace location with redirectUrl
@@ -70,6 +75,15 @@ authForm.addEventListener('submit', async (e) => {
     authButton.textContent = 'Authenticating...';
 
     // > Part A:
+    const formData = new FormData(authForm);
+
+    let response = null;
+
+    if (authType === signInType) {
+        response = await signInUser(formData.get('email'), formData.get('password'));
+    } else {
+        response = await signUpUser(formData.get('email'), formData.get('password'));
+    }
     //      - get formData object from form
     //      - call "authType.action" passing in the email and password from
     //        the form data and assign to response variable
@@ -82,6 +96,7 @@ authForm.addEventListener('submit', async (e) => {
         authButton.disabled = false;
         authButton.textContent = buttonText;
     } else {
+        location.replace(redirectUrl);
         // go back to wherever user came from
         // > Part A using "location", replace url with "redirectUrl"
     }
