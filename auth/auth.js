@@ -15,7 +15,7 @@ const redirectUrl = params.get('redirectUrl') || '../';
 const user = getUser();
 
 if (user) {
-    location.replace(`/auth/?redirectUrl=${encodeURIComponent(location)}`);
+    location.replace(`/user/?redirectUrl=${encodeURIComponent(location)}`);
 }
 // (they need to sign out first before coming here)
 //      - get the user
